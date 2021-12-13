@@ -29,34 +29,34 @@ def top_20_industries_ids():
     return industry_id
 
 
-def senate_members(propublicaapikey, state):
+def senate_members(propublicaapikey):
     headers = {'X-API-Key': propublicaapikey}
     r = requests.get('https://api.propublica.org/congress/v1/117/senate/members.json', headers=headers)
     senate_members = r.json()
     senate_members_df = pd.DataFrame(senate_members['results'][0]['members'])
-    senators_crp_id = senate_members_df[senate_members_df['in_office'] == True][senate_members_df['state'] == state]['crp_id']
+    senators_crp_id = senate_members_df[senate_members_df['in_office'] == True]['crp_id']
     return senators_crp_id
 
 
 def overall_func():
     propublicaapikey = input('Enter ProPublica API Key: ')
     opensecretsapikey = input('Enter OpenSecrets API Key: ')
-    state = input("Which state's senators would you like information about? ")
+    industry_rank = int(input("Which industry's contribution would you like to see? Enter its rank "))
     total_response_df = pd.DataFrame()
-    senators_crp_id = senate_members(propublicaapikey, state)
+    senators_crp_id = senate_members(propublicaapikey)
     industry_id = top_20_industries_ids()
     for senator in senators_crp_id:
-        for industry in industry_id:
-            params = {'apikey': opensecretsapikey, 'cid': senator, 'ind': industry, 'output': 'json'}
-            r_opensecrets = requests.get('https://www.opensecrets.org/api/?method=candIndByInd&', params=params)
-            try:
-                r_json = r_opensecrets.json()
-                r_df = pd.DataFrame(r_json['response']['candIndus'])
-                r_df_transpose = r_df.transpose()
-                total_response_df = pd.concat([total_response_df, r_df_transpose])
-            except JSONDecodeError:
-                pass
-    return total_response_df
+        params = {'apikey': opensecretsapikey, 'cid': senator, 'ind': industry_id[industry_rank - 1], 'output': 'json'}
+        r_opensecrets = requests.get('https://www.opensecrets.org/api/?method=candIndByInd&', params=params)
+        try:
+            r_json = r_opensecrets.json()
+            r_df = pd.DataFrame(r_json['response']['candIndus'])
+            r_df_transpose = r_df.transpose()
+            total_response_df = pd.concat([total_response_df, r_df_transpose])
+        except JSONDecodeError:
+            pass
+    total_response_df['rank'] = total_response_df['rank'].astype(float)
+    return total_response_df.sort_values('rank')
 
 # class ProPublicaAPIKey:
 #     def __init__(self, api_key):
