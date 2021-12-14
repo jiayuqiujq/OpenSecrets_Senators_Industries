@@ -1,6 +1,6 @@
 # OpenSecrets_Senators_Industries
 
-Python package using the OpenSecrets and ProPublica APIs to allow users to view information about their senators and the industries that fund them
+Python package that allows users to view information about their senators and the industries that fund them.
 
 ## Installation
 
@@ -10,7 +10,17 @@ $ pip install OpenSecrets_Senators_Industries
 
 ## Usage
 
-- TODO
+```
+from OpenSecrets_Senators_Industries import OpenSecrets_Senators_Industries
+
+ProPublica = ProPublicaAPIKey('insert ProPublica API Key here')
+OpenSecrets = OpenSecretsAPIKey('insert OpenSecrets API Key here')
+
+top_20_industries_ids(year)
+ProPublica.senate_members(congress_sitting)
+OpenSecrets.top_senators_each_industry(propublica_api_key, industry_id, congress_sitting)
+
+```
 
 ## Contributing
 
