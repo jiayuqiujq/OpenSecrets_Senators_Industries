@@ -5,10 +5,6 @@ description = "Python package using the OpenSecrets and ProPublica APIs to allow
 authors = ["Jade Qiu"]
 license = "MIT"
 readme = "README.md"
-packages = [
-    { include = "OpenSecrets_Senators_Industries" },
-    { include = "OpenSecrets_Senators_Industries/**/*.py" },
-]
 
 [tool.poetry.dependencies]
 python = "^3.9"
