@@ -10,6 +10,10 @@ $ pip install OpenSecrets_Senators_Industries
 
 ## Usage
 
+To use this package, users are required to obtain two API Keys:
+* ProPublica Congress API - Request for API Key here: https://www.propublica.org/datastore/api/propublica-congress-api
+* OpenSecrets API - Create an account and obtain API key here: https://www.opensecrets.org/api/admin/index.php?function=signup
+
 ```
 from OpenSecrets_Senators_Industries import OpenSecrets_Senators_Industries
 
@@ -21,7 +25,6 @@ ProPublica.senate_members(congress_sitting)
 OpenSecrets.top_senators_each_industry(propublica_api_key, industry_id, congress_sitting)
 
 ```
-
 ## Contributing
 
 Interested in contributing? Check out the contributing guidelines. Please note that this project is released with a Code of Conduct. By contributing to this project, you agree to abide by its terms.
