@@ -91,11 +91,6 @@ class ProPublicaAPIKey:
         ProPublica API Key to use ProPublica's Congress API. The API Key can be requested from
         https://www.propublica.org/datastore/api/propublica-congress-api.
 
-    Methods
-    ----------
-    senate_members (congress_sitting=117)
-        Provides a pandas Dataframe containing all the Senators from a particular sitting of Congress
-
         """
 
     def __init__(self, propublica_api_key):
@@ -161,12 +156,6 @@ class OpenSecretsAPIKey:
         OpenSecrets API Key to use ProPublica's Congress API. The API Key can be requested from
         https://www.opensecrets.org/api/admin/index.php?function=signup.
 
-    Methods
-    ----------
-    top_senators_each_industry(propublica_api_key, industry_id, **kwargs)
-        Provides a DataFrame of senators ranked according to who has received the most amount of funding from a
-        particular industry
-
     """
 
     def __init__(self, opensecrets_api_key):
@@ -221,10 +210,8 @@ class OpenSecretsAPIKey:
 
         See Also
         --------
-        top_20_industries_ids() : Extracts the Top 20 Industries that have spent the most on Federal Lobbying from
-        https://www.opensecrets.org/federal-lobbying/industries.
-
-        class ProPublicaAPIKey: All functions that require the ProPublica API Key.
+        top_20_industries_ids()
+        ProPublicaAPIKey
         """
         # Extracting Senators' CRP_IDs
         senators_crp_id = propublica_api_key.senate_members(**kwargs)['crp_id']
