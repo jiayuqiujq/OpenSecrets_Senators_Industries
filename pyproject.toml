@@ -1,10 +1,13 @@
 [tool.poetry]
 name = "OpenSecrets_Senators_Industries"
-version = "0.4.0"
+version = "0.1.0"
 description = "Python package using the OpenSecrets and ProPublica APIs to allow users to view information about their senators and the industries that fund them"
 authors = ["Jade Qiu"]
 license = "MIT"
 readme = "README.md"
+documentation = 'https://opensecrets-senators-industries.readthedocs.io/'
+homepage = "https://github.com/jiayuqiujq/OpenSecrets_Senators_Industries"
+repository = "https://github.com/jiayuqiujq/OpenSecrets_Senators_Industries"
 
 [tool.poetry.dependencies]
 python = "^3.9"
